@@ -15,6 +15,15 @@
       "all_frames":true
     }
   ],
+  "commands": {
+    "highlight_prev": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H",
+        "mac": "MacCtrl+Shift+H"
+      },
+      "description": "Highlight prev input attributes"
+    }
+  },
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
