@@ -4,18 +4,27 @@
 
 'use strict';
 
+initEnvOnInstall();
 addKeyboardShortcutListener();
 
 function addKeyboardShortcutListener(){
   chrome.commands.onCommand.addListener(function(command) {
-    if (command === 'highlight_prev') {
+    if (command === 'toggle_highlight') {
       //TODO: Pop up input text bar
       //TODO: Input prev text. Mark previous attribute if exist
 
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-        chrome.tabs.sendMessage(tabs[0].id, {action: "highlight_prev"}, function(response) {});
+        chrome.storage.sync.get(["isMarked"], function(items) {
+            chrome.tabs.sendMessage(tabs[0].id, {action: "toggle_highlight", isMarked:items.isMarked}, null);
+        });
       });
     }
+  });
+}
+
+function initEnvOnInstall() {
+  chrome.runtime.onInstalled.addListener(function() {
+    chrome.storage.sync.set({isMarked: false}, null);
   });
 }
 
