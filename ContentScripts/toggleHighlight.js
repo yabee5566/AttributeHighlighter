@@ -34,7 +34,7 @@ function unmarkText() {
 
 function getAttrRegEx(attr) {
     //TODO: Use enum attr and switch to return regex
-    return /is/gim;
+    return /[0-9]+/gim;
 }
 
 function sleep(ms) {
