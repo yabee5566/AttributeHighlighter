@@ -11,12 +11,19 @@ $(function() {
   $("#searchTextInput").autocomplete({
     source: predefinedOptions,
     select: function( event, ui ) {
+        if(event.keyCode == 13 || event.which == 13){
+            return; // This part would be handled in keyup together
         }
         let inputText = $("#searchTextInput").val();
         alert("autocomplete option selected. inputText: "+inputText+ "selected");
     }
   });
 
+  $("#searchTextInput").keyup(function (event) {
+    if(event.keyCode == 13 || event.which == 13){ // enter key
+        let inputText = $("#searchTextInput").val();
+        alert("enter keyup. inputText: "+inputText);
+    }
   });
 
 });
