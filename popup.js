@@ -3,19 +3,20 @@
 // found in the LICENSE file.
 
 'use strict';
+$(function() {
+  let predefinedOptions = [
+    "number", "time" //TODO: Use predefined attributes
+  ];
 
-let changeColor = document.getElementById('changeColor');
-
-chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = data.color;
-  changeColor.setAttribute('value', data.color);
-});
-
-changeColor.onclick = function(element) {
-  let color = element.target.value;
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {code: 'document.body.style.backgroundColor = "' + color + '";'});
+  $("#searchTextInput").autocomplete({
+    source: predefinedOptions,
+    select: function( event, ui ) {
+        }
+        let inputText = $("#searchTextInput").val();
+        alert("autocomplete option selected. inputText: "+inputText+ "selected");
+    }
   });
-};
+
+  });
+
+});
