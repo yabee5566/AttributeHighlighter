@@ -1,12 +1,4 @@
 'use strict';
-
-
-chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
-    if (msg.action === 'toggle_highlight') {
-        toggleHighlight(msg.isMarked);
-    }
-});
-
 function toggleHighlight(isMarked){
     if (isMarked){
         unmarkText();
@@ -22,19 +14,18 @@ function getPrevInputAttr() {
     return "input real things here"; //Dummy data for testing
 }
 
-function markText(attr) {
-    let regEx = getAttrRegEx(attr);
-    $("*").markRegExp(regEx);
-    chrome.storage.sync.set({isMarked: true}, null);
+
+function markText(regEx) {
+    $("*").unmark({
+        done: function () {
+            $("*").markRegExp(regEx);
+            chrome.storage.sync.set({isMarked: true}, null);
+        }
+    });
 }
 function unmarkText() {
     $("*").unmark();
     chrome.storage.sync.set({isMarked: false}, null);
-}
-
-function getAttrRegEx(attr) {
-    //TODO: Use enum attr and switch to return regex
-    return /[0-9]+/gim;
 }
 
 function sleep(ms) {
