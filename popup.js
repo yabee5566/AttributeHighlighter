@@ -5,12 +5,17 @@
 'use strict';
 
 $(function() { // same as $( document ).ready(function() {
-    let predefinedOptions = [
-    "number", "time" //TODO: Use predefined attributes
-  ];
-
-  $("#searchTextInput").autocomplete({
-    source: predefinedOptions,
+    $("#searchTextInput").autocomplete({
+    source: function (request, response) {
+        let userInputText = $.ui.autocomplete.escapeRegex(request.term);
+        let attrList = SEARCH_ATTRIBUTE_LIST.filter((attr) => {
+            return attr.userInputKeyRegex.test(userInputText);
+        });
+        let attrNameList = attrList.map(function(attr){
+            return attr.name;
+        });
+        response(attrNameList);
+    },
     select: function( event, ui ) {
         if(event.keyCode == 13 || event.which == 13){
             return; // This part would be handled in keyup together
