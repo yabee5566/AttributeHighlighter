@@ -5,7 +5,8 @@
 'use strict';
 
 $(function() { // same as $( document ).ready(function() {
-    $("#searchTextInput").autocomplete({
+    let searchTextInput = $("#searchTextInput");
+    searchTextInput.autocomplete({
     source: function (request, response) {
         let userInputText = $.ui.autocomplete.escapeRegex(request.term);
         let attrList = SEARCH_ATTRIBUTE_LIST.filter((attr) => {
@@ -23,14 +24,19 @@ $(function() { // same as $( document ).ready(function() {
         let inputText = $("#searchTextInput").val();
         triggerHighlighting(inputText);
     }
-  });
-
-  $("#searchTextInput").keyup(function (event) {
+    });
+    searchTextInput.keyup(function (event) {
     if(event.keyCode == 13 || event.which == 13){ // enter key
         let inputText = $("#searchTextInput").val();
         triggerHighlighting(inputText);
-    }
-  });
+    }});
+    chrome.storage.sync.get(["prevUserInputText"], function(items) {
+        let autocompleteInput = $('.ui-autocomplete-input');
+        if (items.prevUserInputText)
+            autocompleteInput.focus().val(items.prevUserInputText);
+        else
+            autocompleteInput.focus();
+    });
 });
 
 function triggerHighlighting (inputText){
