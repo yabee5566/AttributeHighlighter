@@ -6,7 +6,18 @@
 
 $(function() { // same as $( document ).ready(function() {
     setupSearchTextInput();
+    setupBtns();
 });
+
+function setupBtns() {
+    $("#highlightBtn").click(function () {
+        let inputText = $("#searchTextInput").val();
+        triggerHighlighting(inputText);
+    });
+    $("#cancelBtn").click(function () {
+        triggerCancelingHighlight();
+    });
+}
 
 function setupSearchTextInput(){
     let searchTextInput = $("#searchTextInput");

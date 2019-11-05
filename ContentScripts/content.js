@@ -7,4 +7,7 @@ chrome.runtime.onMessage.addListener(function(msg) {
         chrome.storage.sync.set({"prevUserInputText":msg.inputText}, null);
         markText(regex);
     }
+    else if (msg.action === "cancelHighlight") {
+        unmarkText();
+    }
 });
