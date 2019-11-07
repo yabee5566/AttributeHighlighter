@@ -1,7 +1,8 @@
 function triggerHighlighting (inputText){
     let targetAttr;
     for (let attr of SEARCH_ATTRIBUTE_LIST) {
-        if (attr.userInputKeyRegex.test(inputText)){
+        let isMatched = (inputText.search(attr.userInputKeyRegex) !== -1);
+        if (isMatched){
             targetAttr = attr;
             break;
         }
