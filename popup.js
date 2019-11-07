@@ -46,10 +46,18 @@ function setupSearchTextInput(){
     });
 
     searchTextInput.keyup(function (event) {
-        if(event.keyCode == 13 || event.which == 13){ // enter key
-            let inputText = $("#searchTextInput").val();
-            triggerHighlighting(inputText);
-        }});
+        let isEnterKey = (event.keyCode == 13 || event.which == 13);
+        if(isEnterKey) {
+            $("#searchTextInput").autocomplete("close");
+            if (event.shiftKey) {
+                triggerCancelingHighlight()
+            }
+            else{
+                let inputText = $("#searchTextInput").val();
+                triggerHighlighting(inputText);
+            }
+        }
+    });
     chrome.storage.sync.get(["prevUserInputText"], function(items) {
         let autocompleteInput = $('.ui-autocomplete-input');
         if (items.prevUserInputText)
