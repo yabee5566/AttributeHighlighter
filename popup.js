@@ -30,6 +30,7 @@ function setupSearchTextInput(){
             let attrNameList = attrList.map(function(attr){
                 return attr.name;
             });
+            setBodyHeightDueToDropdown(attrNameList.length);
             response(attrNameList);
         },
         select: function( event, ui ) {
@@ -38,8 +39,12 @@ function setupSearchTextInput(){
             }
             let inputText = $("#searchTextInput").val();
             triggerHighlighting(inputText);
+        },
+        close:function () {
+            setBodyHeightDueToDropdown(0);
         }
     });
+
     searchTextInput.keyup(function (event) {
         if(event.keyCode == 13 || event.which == 13){ // enter key
             let inputText = $("#searchTextInput").val();
@@ -54,3 +59,14 @@ function setupSearchTextInput(){
     });
 }
 
+function setBodyHeightDueToDropdown(optionNum){
+    if (optionNum === undefined || optionNum === 0){
+        $("body").css('height', 30);
+    }
+    else if (optionNum > 3){
+        $("body").css('height', 30 + 3 * 18) ; // max height
+    }
+    else {
+        $("body").css('height', 30 + optionNum * 18);
+    }
+}
