@@ -3,8 +3,30 @@
   <head>
     <style>
       body {
-        height: 200px;
-        width: 400px;
+        height: 30px;
+        width: 300px;
+        background-color: #283747 ;
+      }
+      button{
+        margin-top: 4px;
+        width: 62px;
+      }
+      #highlightBtn {
+        margin-left: 8px;
+      }
+      #cancelBtn{
+        margin-left: 2px;
+      }
+      #searchTextInput {
+        margin-left: 2px;
+        width: 148px;
+
+      }
+      .ui-autocomplete {
+        max-height: 60px;
+        overflow-y: auto;   /* prevent horizontal scrollbar */
+        overflow-x: hidden; /* add padding to account for vertical scrollbar */
+        z-index:1000;
       }
     </style>
 
@@ -22,7 +44,7 @@
   <body>
 
   <div class="ui-widget">
-    <label for="searchTextInput">SEARCH </label>
+    <label for="searchTextInput"></label>
     <input id="searchTextInput">
     <button id="highlightBtn" type="button">Highlight</button>
     <button id="cancelBtn" type="button">Cancel</button>
