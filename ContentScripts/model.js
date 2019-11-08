@@ -14,3 +14,11 @@ const SEARCH_ATTRIBUTE_LIST = [
     //TODO: Add more attribute
 ];
 
+function getMatchedAttr(userInputText){
+    for (let attr of SEARCH_ATTRIBUTE_LIST) {
+        let isMatched = (userInputText.search(attr.userInputKeyRegex) !== -1);
+        if (isMatched){
+            return attr;
+        }
+    }
+}
