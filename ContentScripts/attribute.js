@@ -10,7 +10,9 @@ class Attribute {
 }
 
 const SEARCH_ATTRIBUTE_LIST = [
-    new Attribute("Number", /number|numeric|num/gim, "[0-9]+")
+    new Attribute("Number", /number|numeric|num/gim, "[0-9]+"),
+    new Attribute("IP", /ip/gim,
+        "\\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b"),
     //TODO: Add more attribute
 ];
 
