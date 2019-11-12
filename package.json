@@ -1,0 +1,25 @@
+{
+  "name": "attribute_highlighter",
+  "version": "1.0.0",
+  "description": "A chrome extension to highligh attribute rather than plain text",
+  "main": "background.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://yabee5566@github.com/yabee5566/AttributeHighlighter.git"
+  },
+  "keywords": [
+    "chrome-extension"
+  ],
+  "author": "Ian Pan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yabee5566/AttributeHighlighter/issues"
+  },
+  "homepage": "https://github.com/yabee5566/AttributeHighlighter#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
