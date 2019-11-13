@@ -1,17 +1,5 @@
 'use strict';
-function toggleHighlight(isMarked){
-    if (isMarked){
-        unmarkText();
-    }
-    else{
-        let prevAttr = getPrevInputAttr();
-        markText(prevAttr);
-    }
-}
 
-function getPrevInputAttr() {
-    //TODO: load prev input from storage
-    return "input real things here"; //Dummy data for testing
 }
 
 
